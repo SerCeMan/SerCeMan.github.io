@@ -1,0 +1,54 @@
+---
+title: "The LLM Curve of Impact on Software Engineers"
+description: "In this article, I share my personal mental model about how LLMs affect software engineers at different levels, and why this leads to both excitement and scepticism."
+image: '/images/llmcurve/llmcurve.png'
+date: '2025-02-07'
+---
+
+There is so much debate online about the usefulness of LLMs. While some people see giant leaps in productivity, others don’t see what the fuss is about. Every relevant HackerNews post now comes with a long thread of folks arguing back and forth. I call it the new Great Divide.
+
+I have a theory about this divide. The theory is that, on average, an LLM’s impact on someone’s day-to-day job largely depends on their level, and it follows a really interesting curve. In this post, I’ll explain the reasoning behind this idea.
+
+## The Curve
+
+Let me present you the curve of LLM usefulness for different engineering levels.
+
+![](../images/llmcurve/llmcurve.png)
+
+Is the curve confusing? Well, let me elaborate.
+
+## The impact on different levels
+
+### Junior Engineer
+
+You’re just starting your work in a new codebase and you’re still piecing together a solid mental model of how things actually work. Here, an LLM is a lifesaver. Stuck on an error? An LLM can give you an explanation that makes sense. Need to write some code for a minor feature, or do a library upgrade? All of this can be done much faster with an LLM.
+
+An LLM can already feel like it can do a huge part of your job for you. That's why I believe there’s a real danger zone here. If you lean on an LLM as a shortcut to get unstuck in the same way as you’d reach out to your more senior colleagues when you’d otherwise have to ask – then fine. In the real world, chances are you won’t have the luxury of avoiding LLMs even if you wanted to. However, if you end up copy-pasting code back and forth between your IDE and the LLM without truly understanding what’s happening or why, then advancing your engineering skills will become a serious challenge.
+
+### Mid-Level Engineer
+
+You’ve built up a fair amount of context and can navigate your codebase with confidence. You still find that LLMs make you write code much faster. You can ship features faster with copilot’s completion, use agents to write less boilerplate code, learn new frameworks much faster with ChatGPT.
+
+However, you’re already bumping into cases that an LLM simply can’t handle yet. It won’t decipher what the customers actually wanted from the ticket you were given, it can’t use your debugger to pinpoint a dangerous race condition, and it can’t help you much when you’re responding to a midnight on-call alert.
+
+### Senior Engineer
+
+You've got a great mental model of the whole codebase you're responsible for. You know all of its ins and outs. Hell, you probably wrote a decent part of it. Sure, you can code much faster, and you enjoy it, but how much time do you really spend writing code? When you work on the roadmap, it can’t really help you much. When you dive into a weird heisenbug, it can’t really help you—it gets confused. When you’re writing an extensive design document for the next project, it can only help you with the formatting and structure, not the hardest part – the substance. It just doesn’t have all the nuance and context you’ve accumulated in your head, and even if you wanted to, you couldn’t write it down.
+
+Many of your friends and colleagues are excited, and you want to be excited, but you just can’t. The AI is simply not there yet. This is probably the level where the most scepticism about LLMs comes from, and the more technical or unique your domain is, the stronger the disillusionment.
+
+### Staff+ Engineer
+
+While there are many staff archetypes out there, one thing is common between them all – your role is often to light the path for others to follow. And to achieve this, you have to experiment a lot.
+
+And here’s where LLMs can start shining again. Writing proof-of-concept projects has suddenly become much easier. If you need to show the feasibility of taking an approach, an LLM can help create a half-baked, barely working solution much faster than without it. And the best part is that once the LLM gets stuck, you can very quickly get it unstuck using the extensive domain knowledge in your brain.
+
+Let me tell you a personal anecdote. Almost two years ago now, I was exploring a migration plan from one RPC framework to a few alternative solutions to resolve substantial issues with the former in a large monorepo. Of course, to explore, you could create a smaller repo and experiment there to learn the differences, etc. Or, with the help of an LLM, you could actually make a fully working proof-of-concept change in the real repo. An actual solution that you can touch and play with speaks volumes more than any polished document. And since then, what LLMs can do has only been increasing, enabling Staff+ engineers to run even more experiments and back their bold ideas with working prototypes.
+
+## Conclusion
+
+I hope this article helps bring some clarity to why the experiences of some folks are the complete opposite of others. More importantly, I hope that understanding this curve can help everyone be more empathetic towards others. The reason some people are sceptical or overly excited is not that they ignore reality, but that the tasks they work on are quite different from yours, which is reflected in their beliefs.
+
+This article reflects the time when it was written and might be completely out of date two years from now. The curve might become a horizontal straight line or something else entirely—nobody knows. But one thing is for sure: we’re living in exciting times.
+
+Thank you for reading.
