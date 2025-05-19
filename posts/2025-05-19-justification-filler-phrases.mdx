@@ -1,0 +1,69 @@
+---
+title: "Justification Filler Phrases"
+description: "This article explores how justification filler phrases obscure precision in engineering documents and offers clear alternatives."
+image: '/images/justification-filler-phrases/disenchantment.png'
+date: '2025-05-19'
+---
+
+import Quote from '../components/Quote.mdx';
+
+As a software engineer, I’ve had to read a large number of various documents that go by many different names – RFCs, design documents, proposals, etc. Many of them include reasons describing why a piece of software should be built, a policy enacted, or a decision made.
+
+Sometimes, you read the first paragraph and immediately understand the reasoning behind a given proposal. But often, you have to go through multiple paragraphs that read like a justification of a solution that was chosen prior to formulating the problem that's being solved. Some phrases are especially indicative of this “solutioning”, and once I started noticing the pattern, I began intentionally avoiding them in the documents I write.
+
+In this article, I’ll go through some of them and try to suggest alternatives to use.
+
+![](../images/justification-filler-phrases/disenchantment.png)
+
+<Quote
+    quote="If you're going to be a real writer you're going to need to procrastinate a lot more."
+    attribution="Lucille"
+/>
+
+## The Phrases
+
+The justification filler phrases can often seem like they communicate the information, yet they lack precision, and without additional context it’s impossible to tell whether the “justifications” are correct or not. Below are a few of my personal pet peeves.
+
+### Best Practice
+
+> ... as it’s best practice to run the instances at no more than 60% of the CPU utilisation.
+
+There are no absolute best practices – everything can only be the best in a certain context. What’s a great pattern in a small codebase might fall apart in a large one. What can work as a great pattern for doing things in enterprise engineering might fall apart in gamedev.
+
+Notably, justifying something as a best practice can be found not only in docs but also picked up during code reviews.
+
+##### Alternative
+
+There are rarely absolute best practices – most often, everything is a tradeoff. Rather than trying to describe something as a best practice, try to understand why it was declared a best practice in the first place, e.g. what properties it enabled. Then check whether the pros outweigh the cons. And even if there are no cons, or the cons don’t apply, don’t try to justify something as being a best practice. Instead, untangle this layer of indirection and highlight the original reasons.
+
+### Industry Standard
+
+> We’re migrating to the xyz framework because it’s becoming an industry standard.
+
+Often you can see this in documents proposing a certain technology to be used. Choosing one particular technology over another is often justified as an “industry standard”. This phrase is commonly mentioned in documents as a reason to run cross-company migrations, yet I rarely see documents that elaborate on the specific qualities that “using the industry standard” is meant to achieve.
+
+Using a piece of software that everyone else is using is undoubtedly beneficial – if you face a problem, it’s likely someone else has faced it before; if you want an extension, it probably already exists, etc.
+
+What it doesn’t cover, though, is how the above-mentioned benefits trade off against the possible downsides of choosing this option, and more importantly, whether these benefits are relevant in this particular area at all.
+
+##### Alternative
+
+Instead, again, explicitly listing the benefits – rather than hiding them behind the “industry standard” label – allows them to be directly compared to make the decision clearer.
+
+### Security Posture
+
+> Implementing foo is necessary to improve our security posture.
+
+A lot of changes might be justified as improving the security posture, whether it’s a security policy or a new tool. Unfortunately, the justification is often simply “we’ll be more secure”, without specifying from what, by how much, or at what cost.
+
+Even if the tradeoffs are listed, it’s hard to weigh an abstract security posture improvement against the inevitably added friction. After all, the most secure system is the always-offline, air-gapped one.
+
+##### Alternative
+
+Outline the threat model, map each proposal to the specific threats it blocks or detects, estimate by how much it lowers the risk, then weigh those gains against cost and friction.
+
+## Conclusion
+
+The phrases I’ve mentioned above are my pet peeves, but there are so many of them out there that this article doesn't even scratch the surface. For each one, you can see a clear pattern: some information is conveyed, but without additional context the phrase has no meaning.
+
+I try to avoid using these phrases in my writing. It’s always better to possibly make the paragraph a bit longer, but be much more explicit about what you’re trying to achieve. And I hope this article has convinced you to do the same.

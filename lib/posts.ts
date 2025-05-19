@@ -43,6 +43,9 @@ export function getCanonicalURL(post: Post): string {
 export function getCanonicalImageURL(post: Post): string | null {
   const kind = post.kind;
   if (kind === "mdx") {
+    if (!post.image) {
+      return null
+    }
     return validateURL(`${WEBSITE_HOST_URL}${post.image}`);
   } else if (post.kind === "external") {
     return null
