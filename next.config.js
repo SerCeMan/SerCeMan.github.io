@@ -62,6 +62,11 @@ module.exports = {
                 destination: '/posts/2017-06-29-fantastic-dsls',
                 permanent: true,
             },
+            {
+                source: '/posts/2025-31-03-there-is-no-vibe-engineering',
+                destination: '/posts/2025-03-31-there-is-no-vibe-engineering',
+                permanent: true,
+            },
         ];
     },
     images: {
