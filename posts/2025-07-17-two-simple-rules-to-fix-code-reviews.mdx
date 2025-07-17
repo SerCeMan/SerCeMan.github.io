@@ -1,0 +1,62 @@
+---
+title: "Two Simple Rules to Fix Code Reviews"
+description: "This article explores how justification filler phrases obscure precision in engineering documents and offers clear alternatives."
+image: '/images/justification-filler-phrases/disenchantment.png'
+date: '2025-07-17'
+---
+
+import Quote from '../components/Quote.mdx';
+
+In my career as a software engineer, I've spent a lot of time on both sides of the code review – as an author and a reviewer. After working with thousands of pull requests, I keep seeing the same issues arise time and time again. Now, with AI tools generating more code than ever, the role of code review is only becoming more important. So, even though this topic has been discussed many times before in various ways, I believe it's worth additional attention.
+
+You can find plenty of articles online listing various "best practices" for code reviews – small diffs, early discussions, impersonal language, etc. Yet, reaching effective code reviews almost always comes down to two simple rules.
+
+![](../images/codereview/tearalongthedottedline.jpeg)
+
+<Quote
+    quote="People are complicated: they have sides you don't know, their actions are driven by private reasons that are impossible to see from the outside. We only glimpse a tiny fragment of what they have inside and out."
+    attribution="Sarah, Tear Along the Dotted Line"
+/>
+
+## The Rules
+
+Both rules are targeted at minimising the amount of time a code review takes. I won't be diving into why code reviews are valuable, but will instead focus on minimising the cost. And the cost of code review is the fact that they slow down the amount of time it takes for a change to land in the hands of the user, ultimately slowing down the development lifecycle.
+
+There are many tactical ways to speed things up as an author – send small changes, write clearer descriptions – but realistically, the total time a code review takes is ultimately in the hands of the reviewer. And so, both rules are focused on the reviewer's role.
+
+### Rule 1 – Minimise response time
+
+From the reviewer's perspective the penalty for delaying a review is almost invisible. The diff will still be there tomorrow, and the amount of work feels roughly the same.
+
+For the author it's a completely different story. The moment a change enters review, progress on that stream of work is blocked. Sure, you can do something else in the meantime, but every context switch costs brain-cache and momentum.
+
+- One hour in review, and you lose very little context.
+- A day later you might forget some points of the change and have to reload the mental model, but more importantly you'll lose the momentum.
+- Getting back to the review a week later is basically the same as starting from scratch.
+
+Note that quick response doesn't mean quick approval. You don't have to rubber-stamp any random code, but you do have to respond quickly – try to understand the change, outline the main concerns, ask questions, etc. There is nothing worse than silence.
+
+### Rule 2 – Every comment must include the explicit "because" clause.
+
+Besides the initial wait time, there's the time to resolution – the gap between the first comment and final approval or rejection of the PR. Every comment can speed that up or slow it down.
+
+To speed it up, each comment should actually add value to the review, and it should clearly communicate this value to the author.
+
+There is a simple "trick" that can help achieve both at the same time – each comment must have a reason why – the "because" section. For example, never leave a comment as "please do X". Instead, it must be "please do X because Y". Doing so always, with no exceptions, ensures that the reason for the change is clearly communicated, and if you can't come up with an explicit "because" clause, then it's likely that the comment shouldn't be left in the first place.
+
+## The dangers of ignoring the rules
+
+As an early-career engineer, you might be the one who feels the pain of code reviews the most at first. Then, slowly over time, you become a senior or staff engineer, and you now often have to do more code reviews than actually write code, and might start to forget the pain.
+
+Often, it might be tempting to start ignoring the rules – other tasks get higher priority, the author's submission needs a lot of improvements, and it might seem rational not to jump in and review the code as the highest priority.
+
+But what's often missed is that the behaviour of senior or staff engineers is what establishes the culture. Other, more junior engineers will see what you're doing and will start repeating your behaviour, but on a small scale. Yes, clearly that big, complex change you're reviewing requires more time. But if it takes you two days to find time to review it, others will treat it as the norm, and now even a small change might take a couple of days too.
+
+The only way to battle this is to force yourself to follow these rules, respond fast, and always include the reason why. Even if it requires far more effort, you'll set up a culture that embraces the code review as a great instrument and not a hurdle you have to go through.
+
+## Conclusion
+
+It's worth noting that what is written above is largely related to building software in teams that share a common goal, whether it's a software company or even a group of students building a project together. The rules might not always be applicable to open source, where the set of constraints can be drastically different, and the cost of accepting a contribution might be much higher.
+
+Code reviews can be optimised in many ways, but responding as soon as practically possible and including a "because" are the two rules whose impact can't be overstated. Try to give it a go and see how drastic the effect can be.
+
