@@ -63,17 +63,17 @@ export const SubscribeForm = () => {
           {/* It'd be great to learn why tailwind's pb-1 doesn't work in this case */}
           <div style={{paddingBottom: "1em"}}>
             <form onSubmit={handleSubmit}>
-              <div className="max-w-sm space-x-2 mx-auto p-1 pr-0 flex items-center">
+              <div className="max-w-sm mx-auto p-1 pr-0 flex flex-wrap items-center gap-2">
                 <input type="email"
                        name="email_address"
                        placeholder="yourmail@example.com"
-                       className="flex-1 rounded shadow-md p-3 text-grey-dark"
+                       className="flex-1 min-w-0 rounded shadow-md p-3 text-grey-dark"
                        onChange={handleEmailChange}
                        value={email}
                 />
                 <button type="submit"
                         style={{backgroundColor: "#ba3925"}}
-                        className="text-white text-base font-semibold rounded-md shadow-md hover:bg-indigo-600 p-3">
+                        className="text-white text-base font-semibold rounded-md shadow-md hover:bg-indigo-600 p-3 w-full sm:w-auto">
                   Subscribe
                 </button>
               </div>
