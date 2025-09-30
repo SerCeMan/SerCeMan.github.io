@@ -1,0 +1,70 @@
+---
+title: "Prototype-First Software Design With Agents"
+description: "This article argues for designing software through prototyping and suggest the way you can adjust the shape of your codebase to leverage coding agents to build prototypes faster."
+image: '/images/prototypes/godentity.jpg'
+date: '2025-09-30'
+---
+
+import Quote from '../components/Quote.mdx';
+
+Nothing supports a software design proposal more than a working prototype that clearly showcases it. A working prototype lets the design author explore the problem space, verify feasibility, and feed the learnings back into the design.
+
+Prototypes have always been an important part of designing software, but recently, with the arrival of AI coding agents, it has become much easier to create them as a means of software design. However, very few large codebases are well-optimised for prototyping, so this is what I want to focus on today.
+
+In this article, I’ll cover a few ways you can optimise your codebase to make prototyping easier.
+
+![](../images/prototypes/godentity.jpg)
+
+<Quote
+    quote="When you do things right, people won't be sure you've done anything at all."
+    attribution="God Entity (Futurama)"
+/>
+
+## Designing through prototyping
+
+Designing software is hard. One of the best tools for designing software is a design document – a document that states the problem, outlines constraints, explores alternatives, and justifies the chosen approach. If you’ve worked on large systems in large organisations, you’re likely already familiar with the format, which is known by many other names as well – RFC, ADR, etc.
+
+Building a prototype early in the design process is a great way to support your design, as trying to build something often significantly affects the design itself. You might have a perfect design in mind for a given piece of functionality, but the moment your mental model hits reality, it’s almost certain you’ll discover new constraints that will affect the design.
+
+Having a prototype solves a few issues, as it
+
+- Helps discover most unknown unknowns.
+- Proves feasibility. Design documents are theorems, prototypes are proofs. Nothing says “it’s possible” louder than it being done already, even if the prototype is in a throwaway state.
+- Enables a much clearer estimate of the work required.
+- Serves as an additional means of communication. While your document might give a solid mental model, code speaks volumes and often answers questions others might have.
+
+Software often only becomes good after it has been rewritten at least once or twice. Prototypes allow you to get the benefits of the first rewrite at the design stage.
+
+## Designing your codebase for prototyping
+
+And yet, as codebases grow, building prototypes in them becomes increasingly hard. Below are a few steps I know that can help regain the ability to build prototypes quickly, even in large codebases.
+
+### Make your codebase searchable
+
+The first step in writing a prototype always requires a high-level understanding of the components involved and the APIs you need to interact with. Having this knowledge is what makes engineers who are highly familiar with the codebase so efficient at getting prototypes out. However, working in an area you are deeply familiar with is often a luxury, especially in large organisations. Using AI agents to find the relevant parts of the codebase can be effective, but only if the codebase is searchable, and there are a few angles to searchability.
+
+When considering 1st-party code, searching through the codebase is generally much easier to achieve in a mono-repository setting, as a simple grep gets you 90% of the way there. However, knowing the keywords doesn’t always mean you can easily find the relevant API surfaces, and giving an AI agent a way to search through any relevant documentation could help. What I’ve found is that the main benefit of such search tools is the linkage between searchable text and relevant code paths – it’s not the actual documentation that seems to be useful to the agent, but simply the ability to find paths to the exact files that need to be inspected. One such tool could be pull request searches, as they directly connect plain-text descriptions to the actual file paths.
+
+The next angle is searching through 3rd-party code. And while some language ecosystems allow for easy grepping through third-party code like JavaScript or Python, Java’s Maven-based ecosystem and many others aren’t as friendly by default. While it’s a hurdle, it’s not unsolvable, and I’ve had some success with mounting source code as a folder using jnr-fuse (a filesystem in user space) or giving an agent tools to search through the codebase with IntelliJ’s indexes, which work much faster than grep anyway. I haven’t settled on a perfect workflow for this yet, but once it’s solved properly, I’ll make sure to publish a separate blog post on the solution.
+
+### Maintain a framework for building reliable Integration Tests
+
+Once the plan is created, a coding agent will be happy to start implementing it. However, without a way to verify the results, it can easily go off the rails. The key to getting an agent to successfully build the prototype is to establish a clear feedback loop, where it can iterate on the task until it gets a green check mark, and integration tests, not unit tests, are perfect for this.
+
+AI is great at writing tests that don’t verify anything at all – just as great as humans. And it’s much easier to write a test that doesn’t verify anything when it’s a unit test – call a class, create a mock response, and here you go – you’ve got test coverage with a test that verifies the code using completely unrealistic inputs and outputs. Writing a good unit test arguably requires far more effort than an integration test to ensure that inputs, outputs, and scenarios reasonably reflect the real world – this effort is always done behind the scenes, and AI often fails to replicate it.
+
+Integration tests, however, are much harder to fool, and in a world where we can spin up plenty of realistic dependencies with test containers and similar tools, integration tests can be very fast and reliable too. But while it’s often easy to write a unit test for a piece of functionality without having sufficient test scaffolding in place, it’s much harder to do so in the integration test world because the code under test needs to connect to databases, have container or fake versions of all downstream services your code calls, and so on. Making it easy for AI or other humans to write integration tests does require solid engineering effort. This is not easy, but the payoff is huge.
+
+### Build an end-to-end development environment
+
+A quick feedback loop is essential for building prototypes, and it often goes well beyond passing integration tests, as you want to get a good feel for how the prototype works. You want to be able to launch the thing, try it out, see if it works, fix the issues, try again, and so on. To achieve this, you must be able to get your prototype up and running end to end in your developer environment.
+
+Something that is often missed is that prototyping is rarely scoped to the API boundaries you work on, and therefore you must be able to make changes across a number of applications, (micro)services, web pages, mobile apps, and so on, and have them all working together. This is easy when you work in a monolithic application and often much harder to achieve in organisations that employ service-oriented architecture.
+
+If the only way to get a feel for how the prototype works is to design the final feature and ship it to production, then you’ll fundamentally rob yourself of the quick feedback loop enabling you and your coding agent to build prototypes. Building a system where it’s not just possible but easy and quick would often require engineering effort, but again there are plenty of projects that can help you achieve this – [Testcontainers](https://testcontainers.com/), [AWS LocalStack](https://github.com/localstack/localstack), [Miniflare](https://developers.cloudflare.com/workers/testing/miniflare/), just to name a few.
+
+## Conclusion
+
+Above, I covered a few ways you can make your codebase more suitable for prototyping, whether you use AI agents or not. Having a prototype-optimised codebase does mean that you can speed up your prototyping workflow significantly, and if it’s something that’s a key part of your role, such as a [staff+ engineer](https://serce.me/posts/2025-02-07-the-llm-curve-of-impact-on-software-engineers#staff-engineer), I recommend spending time optimising your workflows, as it’ll pay off tenfold. And even in the worst case, you’ll only make your codebase better as a result, not worse.
+
+It’s very easy, however, to get carried away with this and start using prototype-style AI workflows for simpler tasks that can just get done and are often completed faster without AI. So be mindful of the type of task you’re working on – not everything requires building a prototype. However, if you find yourself starting a design document for a large-scale change, please do try to build a prototype first, coding agents have made it much faster. This might change your approach to designing software completely.
