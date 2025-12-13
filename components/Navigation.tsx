@@ -18,7 +18,7 @@ const Navigation = (): JSX.Element => {
                 <Link href="/blog" className="text-gray-600 py-4">
                     Blog
                 </Link>
-                <Link href="/talks" className="text-gray-600 py-4">
+                <Link href="/talk-resources" className="text-gray-600 py-4">
                     Talks
                 </Link>
               </div>

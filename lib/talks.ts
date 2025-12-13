@@ -3,7 +3,7 @@ export type Lang = 'en' | 'ru';
 export type Event = {
   name: string;
   date: string;
-  eventUrl: string;
+  eventUrl?: string;
   recording?: string;
   slides?: string;
   repo?: string;
@@ -35,7 +35,6 @@ export function getAllTalks(): Talk[] {
         {
           name: "SpringOne",
           date: "2021-09-02",
-          eventUrl: "https://springone.io/2021/sessions/collaborative-applications-at-scale-with-rsocket",
           recording: "https://www.youtube.com/watch?v=2qiQJyOlAIY",
           slides: "https://www.slideshare.net/Pivotal/collaborative-applications-at-scale-with-rsocket"
         },
@@ -64,7 +63,7 @@ export function getAllTalks(): Talk[] {
       events: [{
         name: "SnowOne",
         date: "2021-02-26",
-        eventUrl: "https://snowone.ru/speakers/sergey_tselovalnikov",
+        eventUrl: "https://jugspeakers.info/ru/information/talks/talk/2897",
         recording: "https://www.youtube.com/watch?v=n2-10ZVXVes",
       }]
     },
@@ -83,7 +82,7 @@ export function getAllTalks(): Talk[] {
       events: [{
         name: "JPoint",
         date: "2021-04-13",
-        eventUrl: "https://live.jugru.org/en/video?v=Izg3iiM1NzM4ijA",
+        eventUrl: "https://jpoint.ru/en/archive/2021/talks/fmgsduk8i8ukgntigxna7/",
         recording: "https://www.youtube.com/watch?v=hF5pj9fmWOQ",
         repo: "https://github.com/rsocket/bomberman-workshop",
       }]
@@ -118,8 +117,8 @@ export function getAllTalks(): Talk[] {
       events: [{
         name: "Sydney Kotlin Meetup",
         date: "2018-06-27",
-        eventUrl: "https://sydspace.org/events#kotlin-june-2018",
-        slides: "https://sydspace.org/materials/kotlin-2018-06-27-2/distributed-tracing.pdf",
+        eventUrl: "https://web.archive.org/web/20240415195555/https://sydspace.org/events#kotlin-june-2018",
+        slides: "/talk-resources/distributed-tracing/distributed-tracing.pdf",
       }]
     },
     {
@@ -133,8 +132,8 @@ export function getAllTalks(): Talk[] {
       events: [{
         name: "Kotlin Night Sydney",
         date: "2017-07-14",
-        eventUrl: "https://sydspace.org/events#kotlin-night-2017",
-        recording: "https://www.youtube.com/watch?v=YmU_gFtao_k",
+        eventUrl: "https://web.archive.org/web/20240415195555/https://sydspace.org/events#kotlin-night-2017",
+        recording: "https://www.youtube.com/watch?v=ua6mZxNoCcY",
       }]
     },
     {
@@ -149,7 +148,7 @@ export function getAllTalks(): Talk[] {
       events: [{
         name: "JUG.EKB #1",
         date: "2014-05-15",
-        eventUrl: "https://jugekb.ru",
+        eventUrl: "https://web.archive.org/web/20220314164746/https://jugekb.ru/",
         recording: "https://www.youtube.com/watch?v=ShjuZLumSJ0"
       }]
     }

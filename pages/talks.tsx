@@ -30,9 +30,15 @@ export const Talks = ({talks}: { talks: Talk[]; }): JSX.Element => {
                         className="font-[Alegreya] text-lg"
                       >{formatDate(event.date)}</div>
                       <div className="flex flex-col">
-                        <Link className="text-lg" href={event.eventUrl}>
-                          {event.name}
-                        </Link>
+                        {event.eventUrl ? (
+                            <Link className="text-lg" href={event.eventUrl}>
+                              {event.name}
+                            </Link>
+                        ) : (
+                            <div className="text-lg">
+                              {event.name}
+                            </div>
+                        )}
                         <div className="flex flex-row gap-2 italic">
                           {event.slides &&
                             <Link href={event.slides}>
