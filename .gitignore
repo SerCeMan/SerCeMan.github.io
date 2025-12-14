@@ -13,6 +13,7 @@ yarn-error.log*
 .env.development.local
 .env.test.local
 .env.production.local
+tsconfig.tsbuildinfo
 # These paths are generated with build tools. I wish there was a way to bypass
 # writing to public, but oh well, I'm in the nextjs world now. One day, I'll either
 # escape it, or learn to live with it.

@@ -6,6 +6,19 @@ import Link from "next/link";
 import {formatDate} from "../utils/dates";
 import { JSX } from 'react/jsx-runtime';
 
+const renderLink = (href: string, children: React.ReactNode, className?: string) => {
+  const isExternal = /^https?:\/\//.test(href);
+  return isExternal ? (
+    <a className={className} href={href} target="_blank" rel="noreferrer">
+      {children}
+    </a>
+  ) : (
+    <Link className={className} href={href}>
+      {children}
+    </Link>
+  );
+};
+
 export const Talks = ({talks}: { talks: Talk[]; }): JSX.Element => {
   return (
     <Layout>
@@ -31,9 +44,7 @@ export const Talks = ({talks}: { talks: Talk[]; }): JSX.Element => {
                       >{formatDate(event.date)}</div>
                       <div className="flex flex-col">
                         {event.eventUrl ? (
-                            <Link className="text-lg" href={event.eventUrl}>
-                              {event.name}
-                            </Link>
+                            renderLink(event.eventUrl, event.name, "text-lg")
                         ) : (
                             <div className="text-lg">
                               {event.name}
@@ -41,17 +52,11 @@ export const Talks = ({talks}: { talks: Talk[]; }): JSX.Element => {
                         )}
                         <div className="flex flex-row gap-2 italic">
                           {event.slides &&
-                            <Link href={event.slides}>
-                              Slides
-                            </Link>}
+                            renderLink(event.slides, "Slides")}
                           {event.recording &&
-                            <Link href={event.recording}>
-                              Recording
-                            </Link>}
+                            renderLink(event.recording, "Recording")}
                           {event.repo &&
-                            <Link href={event.repo}>
-                              Repository
-                            </Link>}
+                            renderLink(event.repo, "Repository")}
                         </div>
                       </div>
                     </div>

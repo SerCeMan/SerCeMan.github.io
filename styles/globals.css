@@ -1,6 +1,9 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+
+@source "./pages/**/*.{js,ts,jsx,tsx}";
+@source "./components/**/*.{js,ts,jsx,tsx}";
+@source "./posts/**/*.{md,mdx}";
+@source "./lib/**/*.{js,ts}";
 
 @layer base {
   h1 {
@@ -8,6 +11,9 @@
   }
   h2 {
     @apply text-2xl font-semibold;
+  }
+  hr {
+    @apply border-gray-200;
   }
   p {
     @apply mb-4;
@@ -2552,4 +2558,3 @@ pre {
     display: inherit !important;
   }
 }
-
