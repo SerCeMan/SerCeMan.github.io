@@ -20,6 +20,11 @@ import "@fontsource/noto-serif";
 import rehypeHighlight from "rehype-highlight";
 import clojure from 'highlight.js/lib/languages/clojure'
 import x86asm from 'highlight.js/lib/languages/x86asm'
+import java from 'highlight.js/lib/languages/java'
+import cpp from 'highlight.js/lib/languages/cpp'
+import c from 'highlight.js/lib/languages/c'
+import kotlin from 'highlight.js/lib/languages/kotlin'
+import bash from 'highlight.js/lib/languages/bash'
 import "highlight.js/styles/idea.css"
 import TweetEmbed from "../../components/TweetEmbed";
 import TimeQuizChooser from "../../components/matteroftime/TimeQuizChooser";
@@ -101,10 +106,14 @@ export const getStaticProps: GetStaticProps = async ({params}) => {
         rehypeCodeTitles,
         [rehypeHighlight, {
           languages: {
+            java,
+            cpp,
+            c,
             clojure,
-            // man,
             x86asm,
-          }
+            kotlin,
+            bash,
+          },
         }],
         [
           rehypeAutolinkHeadings,
