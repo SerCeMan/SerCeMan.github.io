@@ -1,0 +1,62 @@
+---
+title: "We are QA Engineers now"
+description: "This article argues that working with coding agents turns every software engineer into a QA engineer and into what this new role now entails."
+image: '/images/qa-engineer-now/mask.jpg'
+date: '2026-02-05'
+---
+
+import Quote from "../components/Quote";
+
+Quality Assurance, or QA, has always been an important part of the software development process, whether as a separate role or as part of a software engineer role. Yet, in my experience, it hasn't been given as much attention as building software.
+
+What I've observed is that over the last year or so, the software development landscape has changed in a way that makes QA a central part of the software engineering workflow.
+
+Let me elaborate.
+
+![](/images/qaengineer/bane.jpg)
+
+<Quote
+    quote="No one knew who i was until i put on the mask."
+    attribution="Bane"
+/>
+
+## The Change
+
+As I've been using coding agents more and more over the last year, I've noticed that my approach to introducing large changes to the codebase has changed drastically. Previously, I'd start the actual implementation by asking what minimal set of changes I can make to get a working prototype. Now, I start by asking a different question – "how can I test it?", or rather, "how can I write a test that proves the desired functionality works correctly?"
+
+That is because an agent's ability to produce correct code depends heavily on their ability to verify their own work. This point was highlighted well by [Boris Cherny](https://x.com/bcherny/status/2007179861115511237) and many others. If you've used agents, you've likely experienced this yourself many times – the agent tells you the work has been done and yet nothing works. Even when you give the agent the most detailed specification possible, it will happily present you with incorrect or half-working code if it has no ability to verify its work.
+
+## The Problem
+
+A logical question to ask is – can't an agent simply write a test? Often yes, in small systems, that works perfectly well. But the larger the system is, the more complex the testing domain becomes. And that complexity isn't in writing tests themselves, but rather in making writing such tests possible.
+
+As long as a change stays within the boundary of a single service or system, testing can be relatively easy. Spin up a container, prepare the storage, prepare the data, and you're good to go. You might need realistic [fakes](https://www.martinfowler.com/articles/mocksArentStubs.html#:~:text=fill%20parameter%20lists.-,Fake,-objects%20actually%20have) for the services your service interacts with, but that's about it.
+
+However, testing a change made across service boundaries is where the testing effort increases dramatically. Now you need multiple systems running together, a way for those systems to interact, and assert on the state of the system as a whole. Then if a UI is involved at any point in time, the complexity increases even further.
+
+## The New Role
+
+So as a software engineer working with coding agents, your role is rapidly shifting, but not towards "prompt engineer" as many tried to predict, but rather towards quality verification, so that the agent can verify the result of its work without a human in the inner loop by building testing harnesses. This does not mean the changes will not need to be reviewed, understood, and owned, but rather the goal is to enable the agent to produce a unit of change, a complete diff ready for review.
+
+For complex software, harnesses are not easy to build, and they often require designing software with the testability in mind. Once you have the testing harness, you can let the agent write integration tests against it, run them, observe failures, and iterate. Without the harness, the agents will only be able to rely on "vibes".
+
+An agent-ready harness has a few properties.
+
+* *Reproducibility*<br/><br/>
+The agents can and will make mistakes, remove tables, drop whole databases, leave lots of mess behind. They will leave the environment in a broken state and then keep building on top of it. Given these constraints, the environment must be recreatable from scratch.
+
+* *Authenticity*<br/><br/>
+Whether you use fakes or give access to real endpoints in your harness, the data it operates on needs to be authentic, that is, matching the real world as closely as possible. A common agent failure mode is when the project uses frameworks like Mockito to create mocks and stubs, and agents have to create their own fake data for tests, and write code that expects data that rarely matches the real world.
+
+- *Composability*<br/><br/>
+Composability pushes the harness building to an organisational capability. A harness that covers one service is great until you need to change behaviour across multiple systems interacting with each other. If all teams build on top of the same framework, you can actually validate end-to-end behaviour without rebuilding the world every time.
+
+- *It's programmatic*<br/><br/>
+If the setup requires clicking through a UI or copy-pasting commands into a console, it'll reintroduce a human into the loop. An agent should be able to spin up the environment, run the scenario, assert, and tear it down at the end.
+
+
+There are tools that help with parts of this. [Testcontainers](https://testcontainers.com/) is a great one for using services you can spin up locally. There are projects like [Localstack](https://www.localstack.cloud/) or [Miniflare](https://developers.cloudflare.com/workers/testing/miniflare/) that emulate cloud services. But as every large software project is somewhat unique, your approach might vary. The hard part is always to create a framework that's tailored to your unique system.
+
+## Conclusion
+
+Any functionality, however complex, can be asserted on. As long as the agents can verify their work, you can use them effectively to implement large changes, but you have to invest in the tooling to assure the quality of the agents' work. What's especially interesting is that none of this work is new in the age of AI, and following the same practices would make you much more productive [pre-AI as well](https://www.canva.dev/blog/engineering/functional-completeness-and-local-hermeticity/). The difference is that previously you could get by without a very tight feedback loop, but in the current age, having such a testing harness is what makes agentic programming so effective. Welcome to the new world where we're QA engineers now.
