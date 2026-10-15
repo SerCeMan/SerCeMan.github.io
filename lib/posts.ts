@@ -92,6 +92,12 @@ function getMdxPosts(includeContent: boolean): MdxPost[] {
 function getExternalPosts(): ExternalPost[] {
   return [{
     kind: "external",
+    title: "Canva incident report: API Gateway outage",
+    date: "2024-12-20",
+    description: "An incident report for the Canva outage on November 12, 2024.",
+    canonicalLink: "https://www.canva.dev/blog/engineering/canva-incident-report-api-gateway-outage/",
+  }, {
+    kind: "external",
     title: "Enabling real-time collaboration with RSocket",
     date: "2021-05-27",
     description: "This post describes how we empowered our millions of users at Canva " +
