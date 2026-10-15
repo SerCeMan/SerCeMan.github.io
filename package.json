@@ -4,10 +4,11 @@
   "license": "CC-BY-4.0",
   "version": "1.0.0",
   "private": true,
+  "packageManager": "yarn@4.9.1",
   "scripts": {
     "init": "NEXT_TELEMETRY_DISABLED=1 next telemetry disable",
     "dev": "NEXT_TELEMETRY_DISABLED=1 next dev",
-    "build": "NEXT_TELEMETRY_DISABLED=1 next build",
+    "build": "NEXT_TELEMETRY_DISABLED=1 next build && yarn postbuild",
     "postbuild": "NEXT_TELEMETRY_DISABLED=1 next-sitemap",
     "export": "NEXT_TELEMETRY_DISABLED=1 next-on-pages",
     "start": "NEXT_TELEMETRY_DISABLED=1 next start",
