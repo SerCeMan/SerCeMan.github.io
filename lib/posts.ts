@@ -8,6 +8,11 @@ export function getPostSlugs(): string[] {
   return fs.readdirSync(POSTS_PATH);
 }
 
+export type DiscussionLink = {
+  platform: "twitter" | "reddit" | "hackerNews" | "lobsters";
+  url: string;
+}
+
 export type MdxPost = {
   kind: "mdx";
   title: string;
@@ -16,6 +21,7 @@ export type MdxPost = {
   description: string;
   image?: string;
   slug: string;
+  discussionLinks: DiscussionLink[];
 }
 
 export type ExternalPost = {
@@ -25,6 +31,7 @@ export type ExternalPost = {
   description: string;
   image?: string;
   canonicalLink: string,
+  discussionLinks: DiscussionLink[];
 }
 
 export function getCanonicalURL(post: Post): string {
@@ -76,6 +83,7 @@ function getMdxPostBySlug(slug: string, includeContent: boolean): MdxPost {
     content: includeContent ? content : null,
     description: data['description'],
     image: data['image'],
+    discussionLinks: data['discussionLinks'] ?? [],
     slug: realSlug,
     kind: "mdx"
   }
@@ -96,6 +104,7 @@ function getExternalPosts(): ExternalPost[] {
     date: "2024-12-20",
     description: "An incident report for the Canva outage on November 12, 2024.",
     canonicalLink: "https://www.canva.dev/blog/engineering/canva-incident-report-api-gateway-outage/",
+    discussionLinks: [],
   }, {
     kind: "external",
     title: "Enabling real-time collaboration with RSocket",
@@ -104,6 +113,7 @@ function getExternalPosts(): ExternalPost[] {
       "to collaborate at scale by introducing services that support bidirectional " +
       "streaming using RSocket.",
     canonicalLink: "https://canvatechblog.com/enabling-real-time-collaboration-with-rsocket-92416fe52650",
+    discussionLinks: [],
   }]
 }
 

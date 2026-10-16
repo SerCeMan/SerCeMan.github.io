@@ -37,6 +37,7 @@ import {SubscribeForm} from "../../components/subscriptions/SubscribeForm";
 import {AUTHOR_NAME} from "../../utils/author";
 import ImageWithCaption from "../../components/ImgWithCaption";
 import {CapitalLetter} from "../../components/alphabet/CapitalLetter";
+import DiscussionLinks from "../../components/posts/DiscussionLinks";
 
 
 // Custom components/renderers to pass to MDX.
@@ -50,6 +51,7 @@ const components = {
   Link,
   TweetEmbed,
   Quote,
+  DiscussionLinks,
   // the matter of time only
   CanvaEmbed,
   CheckResults,
