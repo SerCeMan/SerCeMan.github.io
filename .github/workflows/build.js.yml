@@ -11,16 +11,13 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v3
-    - name: Use the project's Node.js version
-      uses: actions/setup-node@v3
+    - uses: actions/checkout@v6
+    - name: Install pnpm
+      uses: pnpm/action-setup@v6
+    - name: Use the project's Node.js version and cache pnpm packages
+      uses: actions/setup-node@v6
       with:
         node-version-file: '.node-version'
-    - run: corepack enable
-    - name: Cache Yarn packages
-      uses: actions/setup-node@v3
-      with:
-        node-version-file: '.node-version'
-        cache: 'yarn'
-    - run: yarn install --immutable
-    - run: yarn lint && yarn build
+        cache: 'pnpm'
+    - run: pnpm install --frozen-lockfile
+    - run: pnpm lint && pnpm build

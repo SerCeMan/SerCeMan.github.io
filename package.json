@@ -4,11 +4,11 @@
   "license": "CC-BY-4.0",
   "version": "1.0.0",
   "private": true,
-  "packageManager": "yarn@4.9.1",
+  "packageManager": "pnpm@12.14.0",
   "scripts": {
     "init": "NEXT_TELEMETRY_DISABLED=1 next telemetry disable",
     "dev": "NEXT_TELEMETRY_DISABLED=1 next dev",
-    "build": "NEXT_TELEMETRY_DISABLED=1 next build && yarn postbuild",
+    "build": "NEXT_TELEMETRY_DISABLED=1 next build",
     "postbuild": "NEXT_TELEMETRY_DISABLED=1 next-sitemap",
     "export": "NEXT_TELEMETRY_DISABLED=1 next-on-pages",
     "start": "NEXT_TELEMETRY_DISABLED=1 next start",
@@ -33,6 +33,7 @@
   },
   "devDependencies": {
     "@cloudflare/next-on-pages": "^1.13.16",
+    "@next/eslint-plugin-next": "^16.0.10",
     "@tailwindcss/postcss": "^4.1.18",
     "@types/node": "25.0.2",
     "@types/react": "^19.2.7",
