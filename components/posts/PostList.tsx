@@ -4,8 +4,17 @@ import PostLink from "./PostLink";
 import {Post} from "../../lib/posts";
 import Link from "next/link";
 import { JSX } from 'react/jsx-runtime';
+import DiscussionLinks from "./DiscussionLinks";
 
-const PostList = ({posts, listClass, limit}: { posts: Post[], listClass: string, limit?: number }): JSX.Element => {
+type PostListProps = {
+  posts: Post[];
+  listClass: string;
+  limit?: number;
+  showDiscussions?: boolean;
+  titleFirst?: boolean;
+};
+
+const PostList = ({posts, listClass, limit, showDiscussions = false, titleFirst = false}: PostListProps): JSX.Element => {
   const isLimited = posts.length > limit;
   return (
     <div className={listClass}>
@@ -13,9 +22,13 @@ const PostList = ({posts, listClass, limit}: { posts: Post[], listClass: string,
         {posts
           .slice(0, limit || posts.length)
           .map((post) => (
-            <li key={post.title}>
+            <li key={post.title} className={showDiscussions ? "mb-5 last:mb-0" : undefined}>
               <PostLink
-                post={post}/>
+                post={post}
+                titleFirst={titleFirst}/>
+              {showDiscussions && (
+                <DiscussionLinks links={post.discussionLinks} compact postTitle={post.title}/>
+              )}
             </li>
           ))}
       </ul>

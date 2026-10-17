@@ -14,6 +14,8 @@ export const Blog = ({posts}: { posts: Post[] }): JSX.Element => {
           <PostList
             listClass="pl-4"
             posts={posts}
+            showDiscussions
+            titleFirst
           />
         </div>
       </div>
