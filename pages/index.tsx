@@ -53,7 +53,7 @@ export const Index = ({posts}: IndexProps): JSX.Element => {
               </div>
               <div className="sm:grid sm:grid-cols-2">
                 <dt className="font-bold">Github</dt>
-                <dd className="font-normal"><a href="https://github.com/SerCeMan">Github</a>
+                <dd className="font-normal"><a href="https://github.com/SerCeMan">SerCeMan</a>
                 </dd>
               </div>
               <div className="sm:grid sm:grid-cols-2">
