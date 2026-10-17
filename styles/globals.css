@@ -52,31 +52,8 @@
 
 /* Post styles */
 
-.anchor:hover {
-  @apply visible;
-}
-
-.asciiprose .anchor {
-  @apply absolute invisible no-underline;
-
-  margin-left: -1em;
-  padding-right: 0.5em;
-  width: 80%;
-  max-width: 700px;
-  cursor: pointer;
-}
-
 .asciiprose a {
   @apply transition-all;
-}
-
-.asciiprose .anchor:after {
-  @apply text-gray-300 dark:text-gray-700;
-  content: '#';
-}
-
-.asciiprose *:hover > .anchor {
-  @apply visible;
 }
 
 .asciiprose pre {
@@ -1239,7 +1216,18 @@ pre {
   border-top: 1px solid #efefed;
 }
 
-.asciiprose #content h1 > a.anchor,
+.asciiprose h1[id],
+.asciiprose h2[id],
+.asciiprose h3[id],
+.asciiprose h4[id],
+.asciiprose h5[id],
+.asciiprose h6[id],
+.asciiprose #toctitle,
+.asciiprose .sidebarblock > .content > .title {
+  position: relative;
+}
+
+.asciiprose h1 > a.anchor,
 .asciiprose h2 > a.anchor,
 .asciiprose h3 > a.anchor,
 .asciiprose #toctitle > a.anchor,
@@ -1248,17 +1236,19 @@ pre {
 .asciiprose h5 > a.anchor,
 .asciiprose h6 > a.anchor {
   position: absolute;
-  z-index: 1001;
-  width: 1.5ex;
-  margin-left: -1.5ex;
-  display: block;
+  top: 0;
+  left: -1em;
+  width: 1em;
+  display: inline-block;
   text-decoration: none !important;
-  visibility: hidden;
+  color: #6b7280;
+  opacity: 0;
   text-align: center;
   font-weight: 400;
+  line-height: inherit;
 }
 
-.asciiprose #content h1 > a.anchor:before,
+.asciiprose h1 > a.anchor:before,
 .asciiprose h2 > a.anchor:before,
 .asciiprose h3 > a.anchor:before,
 .asciiprose #toctitle > a.anchor:before,
@@ -1266,14 +1256,12 @@ pre {
 .asciiprose h4 > a.anchor:before,
 .asciiprose h5 > a.anchor:before,
 .asciiprose h6 > a.anchor:before {
-  content: "\00A7";
-  font-size: .85em;
-  display: block;
-  padding-top: 0.1em;
+  content: "#";
+  font-size: .75em;
 }
 
-.asciiprose #content h1:hover > a.anchor,
-.asciiprose #content h1 > a.anchor:hover,
+.asciiprose h1:hover > a.anchor,
+.asciiprose h1 > a.anchor:hover,
 .asciiprose h2:hover > a.anchor,
 .asciiprose h2 > a.anchor:hover,
 .asciiprose h3:hover > a.anchor,
@@ -1287,8 +1275,15 @@ pre {
 .asciiprose h5:hover > a.anchor,
 .asciiprose h5 > a.anchor:hover,
 .asciiprose h6:hover > a.anchor,
-.asciiprose h6 > a.anchor:hover {
-  visibility: visible;
+.asciiprose h6 > a.anchor:hover,
+.asciiprose a.anchor:focus-visible {
+  opacity: 1;
+}
+
+.asciiprose a.anchor:focus-visible {
+  outline: 2px solid #6b7280;
+  outline-offset: 2px;
+  border-radius: 2px;
 }
 
 .asciiprose #content h1 > a.link,

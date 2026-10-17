@@ -122,6 +122,7 @@ export const getStaticProps: GetStaticProps = async ({params}) => {
           {
             properties: {
               className: ['anchor'],
+              ariaLabel: 'Link to this section',
             },
           },
         ],
