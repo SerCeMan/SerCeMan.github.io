@@ -48,8 +48,8 @@ export const Index = ({posts}: IndexProps): JSX.Element => {
             <dl className="text-lg">
               <div className="sm:grid sm:grid-cols-2">
                 <dt className="font-bold">Email</dt>
-                {/* Just a little obfuscation to prevent spam */}
-                <dd className="font-normal"><span className="whitespace-nowrap">sergey⟬αt⟭serce.me</span></dd>
+                {/* U+1D5BA (mathematical sans-serif a) adds a little obfuscation. */}
+                <dd className="font-normal"><span className="whitespace-nowrap">sergey⟬𝖺t⟭serce.me</span></dd>
               </div>
               <div className="sm:grid sm:grid-cols-2">
                 <dt className="font-bold">Github</dt>
