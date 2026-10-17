@@ -1,16 +1,41 @@
 @import "tailwindcss";
 
+@theme {
+  --font-sans: "Crimson Pro Variable", "EB Garamond Variable", "DejaVu Serif", serif;
+  --font-weight-normal: 350;
+  --font-weight-medium: 450;
+  --font-weight-semibold: 550;
+  --font-weight-bold: 650;
+}
+
 @source "./pages/**/*.{js,ts,jsx,tsx}";
 @source "./components/**/*.{js,ts,jsx,tsx}";
 @source "./posts/**/*.{md,mdx}";
 @source "./lib/**/*.{js,ts}";
 
 @layer base {
+  body {
+    font-family: var(--font-sans);
+    font-size: 1.1875rem;
+    font-weight: var(--font-weight-normal);
+    font-kerning: normal;
+  }
+
+  @media (min-width: 768px) {
+    body {
+      font-size: 1.25rem;
+    }
+  }
+
   h1 {
-    @apply mb-6 text-3xl font-semibold;
+    @apply mb-6 text-3xl font-medium;
   }
   h2 {
-    @apply text-2xl font-semibold;
+    @apply text-2xl font-medium;
+  }
+  b,
+  strong {
+    font-weight: var(--font-weight-bold);
   }
   hr {
     @apply border-gray-200;
@@ -19,16 +44,16 @@
     @apply mb-4;
   }
   a {
-    @apply text-blue-500 hover:underline;
+    color: #2156a5;
+    @apply hover:underline;
+  }
+  a:hover,
+  a:focus {
+    color: #1d4b8f;
   }
   ol {
     list-style: auto;
   }
-}
-
-.text-base {
-  /* increase slightly from the default 1.5em */
-  line-height: 1.6em;
 }
 
 /** TODO: move me */
@@ -107,11 +132,6 @@ pre {
   overflow-x: scroll;
 }
 
-.asciiprose p {
-  /* this breaks everything */
-  /*overflow-x: scroll;*/
-}
-
 .asciiprose .formalpara-title p {
   margin-bottom: 0;
   margin-top: 1em;
@@ -158,7 +178,6 @@ pre {
 }
 
 .asciiprose html {
-  font-family: sans-serif;
   -ms-text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%;
 }
@@ -191,7 +210,7 @@ pre {
 
 .asciiprose b,
 .asciiprose strong {
-  font-weight: bold;
+  font-weight: var(--font-weight-bold);
 }
 
 .asciiprose dfn {
@@ -232,7 +251,6 @@ pre {
 .asciiprose sub,
 .asciiprose sup {
   font-size: 75%;
-  line-height: 0;
   position: relative;
   vertical-align: baseline;
 }
@@ -275,11 +293,6 @@ pre {
   font-family: inherit;
   font-size: 100%;
   margin: 0;
-}
-
-.asciiprose button,
-.asciiprose input {
-  line-height: normal;
 }
 
 .asciiprose button,
@@ -342,8 +355,7 @@ pre {
   box-sizing: border-box;
 }
 
-.asciiprose html,
-.asciiprose {
+.asciiprose html {
   font-size: 100%;
 }
 
@@ -352,10 +364,6 @@ pre {
   color: rgba(0, 0, 0, 0.8);
   padding: 0;
   margin: 0;
-  font-family: "Noto Serif", "DejaVu Serif", serif;
-  font-weight: 400;
-  font-style: normal;
-  line-height: 1;
   position: relative;
   cursor: auto;
 }
@@ -445,7 +453,6 @@ pre {
 .asciiprose .paragraph.lead > p,
 .asciiprose #preamble > .sectionbody > .paragraph:first-of-type p {
   font-size: 1.21875em;
-  line-height: 1.6;
 }
 
 .asciiprose .subheader,
@@ -468,9 +475,8 @@ pre {
 .asciiprose .qlist > .title,
 .asciiprose .hdlist > .title,
 .asciiprose .formalpara-title {
-  line-height: 1.45;
   color: #7a2518;
-  font-weight: 400;
+  font-weight: var(--font-weight-normal);
   margin-top: 0;
   margin-bottom: 0.25em;
 }
@@ -504,7 +510,6 @@ pre {
 .asciiprose a {
   color: #2156a5;
   text-decoration: underline;
-  line-height: inherit;
 }
 
 .asciiprose a:hover,
@@ -518,28 +523,25 @@ pre {
 
 .asciiprose p {
   font-family: inherit;
-  font-weight: 400;
+  font-weight: var(--font-weight-normal);
   font-size: 1em;
-  line-height: 1.6;
   margin-bottom: 1.25em;
   text-rendering: optimizeLegibility;
 }
 
 .asciiprose p aside {
   font-size: .875em;
-  line-height: 1.35;
   font-style: italic;
 }
 
 .asciiprose h1 {
-  font-family: "Open Sans", "DejaVu Sans", sans-serif;
-  font-weight: 300;
+  font-family: inherit;
+  font-weight: var(--font-weight-medium);
   font-style: normal;
   color: #ba3925;
   text-rendering: optimizeLegibility;
   margin-top: 10px;
   margin-bottom: .5em;
-  line-height: 1.0125em;
 }
 
 .asciiprose h2,
@@ -549,14 +551,13 @@ pre {
 .asciiprose h4,
 .asciiprose h5,
 .asciiprose h6 {
-  font-family: "Open Sans", "DejaVu Sans", sans-serif;
-  font-weight: 300;
+  font-family: inherit;
+  font-weight: var(--font-weight-medium);
   font-style: normal;
   color: #ba3925;
   text-rendering: optimizeLegibility;
-  margin-top: 1em;
+  margin-top: 1.25em;
   margin-bottom: .5em;
-  line-height: 1.0125em;
 }
 
 .asciiprose h1 small,
@@ -569,21 +570,20 @@ pre {
 .asciiprose h6 small {
   font-size: 60%;
   color: #e99b8f;
-  line-height: 0;
 }
 
 .asciiprose h1 {
-  font-size: 2.125em;
+  font-size: 2em;
 }
 
 .asciiprose h2 {
-  font-size: 1.6875em;
+  font-size: 1.5em;
 }
 
 .asciiprose h3,
 .asciiprose #toctitle,
 .asciiprose .sidebarblock > .content > .title {
-  font-size: 1.375em;
+  font-size: 1.25em;
 }
 
 .asciiprose h4,
@@ -606,18 +606,15 @@ pre {
 .asciiprose em,
 .asciiprose i {
   font-style: italic;
-  line-height: inherit;
 }
 
 .asciiprose strong,
 .asciiprose b {
-  font-weight: bold;
-  line-height: inherit;
+  font-weight: var(--font-weight-bold);
 }
 
 .asciiprose small {
   font-size: 60%;
-  line-height: inherit;
 }
 
 .asciiprose code {
@@ -630,7 +627,6 @@ pre {
 .asciiprose ol,
 .asciiprose dl {
   font-size: 1em;
-  line-height: 1.6;
   margin-bottom: 1.25em;
   list-style-position: outside;
   font-family: inherit;
@@ -680,7 +676,7 @@ pre {
 
 .asciiprose dl dt {
   margin-bottom: .3125em;
-  font-weight: bold;
+  font-weight: var(--font-weight-bold);
 }
 
 .asciiprose dl dd {
@@ -723,38 +719,27 @@ pre {
 
 .asciiprose blockquote,
 .asciiprose blockquote p {
-  line-height: 1.6;
   color: rgba(0, 0, 0, 0.85);
 }
 
 @media only screen and (min-width: 768px) {
-  .asciiprose h1,
-  .asciiprose h2,
-  .asciiprose h3,
-  .asciiprose #toctitle,
-  .asciiprose .sidebarblock > .content > .title,
-  .asciiprose h4,
-  .asciiprose h5,
-  .asciiprose h6 {
-    line-height: 1.2;
-  }
 
   .asciiprose h1 {
-    font-size: 2.625em;
+    font-size: 2.4em;
   }
 
   .asciiprose h2 {
-    font-size: 2.3125em;
+    font-size: 1.8em;
   }
 
   .asciiprose h3,
   .asciiprose #toctitle,
   .asciiprose .sidebarblock > .content > .title {
-    font-size: 1.6875em;
+    font-size: 1.4em;
   }
 
   .asciiprose h4 {
-    font-size: 1.4375em;
+    font-size: 1.2em;
   }
 }
 
@@ -767,7 +752,7 @@ pre {
 .asciiprose table thead,
 .asciiprose table tfoot {
   background: #f7f8f7;
-  font-weight: bold;
+  font-weight: var(--font-weight-bold);
 }
 
 .asciiprose table thead tr th,
@@ -799,7 +784,6 @@ pre {
 .asciiprose table tr td,
 .asciiprose table tfoot tr td {
   display: table-cell;
-  line-height: 1.6;
 }
 
 .asciiprose body {
@@ -814,8 +798,7 @@ pre {
 .asciiprose h4,
 .asciiprose h5,
 .asciiprose h6 {
-  line-height: 1.2;
-  word-spacing: -0.05em;
+  word-spacing: normal;
 }
 
 .asciiprose h1 strong,
@@ -826,7 +809,7 @@ pre {
 .asciiprose h4 strong,
 .asciiprose h5 strong,
 .asciiprose h6 strong {
-  font-weight: 400;
+  font-weight: var(--font-weight-bold);
 }
 
 .asciiprose .clearfix:before,
@@ -851,7 +834,6 @@ pre {
   background-color: #f7f7f8;
   -webkit-border-radius: 4px;
   border-radius: 4px;
-  line-height: 1.45;
   text-rendering: optimizeSpeed;
 }
 
@@ -877,7 +859,6 @@ pre {
   display: inline-block;
   color: rgba(0, 0, 0, 0.8);
   font-size: .65em;
-  line-height: 1.45;
   background-color: #f7f7f7;
   border: 1px solid #ccc;
   -webkit-border-radius: 3px;
@@ -909,7 +890,7 @@ pre {
 .asciiprose b.button:after {
   position: relative;
   top: -1px;
-  font-weight: 400;
+  font-weight: var(--font-weight-normal);
 }
 
 .asciiprose b.button:before {
@@ -988,7 +969,6 @@ pre {
 
 .asciiprose #header .details {
   border-bottom: 1px solid #ddddd8;
-  line-height: 1.45;
   padding-top: .25em;
   padding-bottom: .25em;
   padding-left: .25em;
@@ -1061,12 +1041,10 @@ pre {
 }
 
 .asciiprose #toc ul {
-  font-family: "Open Sans", "DejaVu Sans", sans-serif;
   list-style-type: none;
 }
 
 .asciiprose #toc li {
-  line-height: 1.3334;
   margin-top: 0.3334em;
 }
 
@@ -1199,7 +1177,6 @@ pre {
 
 .asciiprose #footer-text {
   color: rgba(255, 255, 255, 0.8);
-  line-height: 1.44;
 }
 
 .asciiprose .sect1 {
@@ -1244,8 +1221,7 @@ pre {
   color: #6b7280;
   opacity: 0;
   text-align: center;
-  font-weight: 400;
-  line-height: inherit;
+  font-weight: var(--font-weight-normal);
 }
 
 .asciiprose h1 > a.anchor:before,
@@ -1339,7 +1315,6 @@ pre {
 .asciiprose .formalpara-title {
   text-rendering: optimizeLegibility;
   text-align: left;
-  font-family: "Noto Serif", "DejaVu Serif", serif;
   font-size: 1em;
   font-style: italic;
 }
@@ -1381,8 +1356,7 @@ pre {
 }
 
 .asciiprose .admonitionblock > table td.icon .title {
-  font-weight: bold;
-  font-family: "Open Sans", "DejaVu Sans", sans-serif;
+  font-weight: var(--font-weight-bold);
   text-transform: uppercase;
 }
 
@@ -1542,7 +1516,6 @@ pre {
   font-size: .75em;
   top: .425rem;
   right: .5rem;
-  line-height: 1;
   text-transform: uppercase;
   color: #999;
 }
@@ -1611,15 +1584,14 @@ pre {
 .asciiprose .quoteblock blockquote,
 .asciiprose .quoteblock blockquote p {
   color: rgba(0, 0, 0, 0.85);
-  /*font-size: 1.45rem;*/
-  line-height: 1.75;
-  word-spacing: .1em;
-  letter-spacing: 0;
+  word-spacing: normal;
+  letter-spacing: normal;
   font-style: italic;
-  text-align: justify;
+  text-align: left;
 }
 
 .asciiprose .quoteblock blockquote {
+  position: relative;
   margin: 0;
   padding: 0;
   border: 0;
@@ -1627,11 +1599,11 @@ pre {
 
 .asciiprose .quoteblock blockquote:before {
   content: "\201c";
-  float: left;
+  position: absolute;
+  top: -.25em;
+  left: -.6em;
   font-size: 2.75em;
-  font-weight: bold;
-  line-height: .6em;
-  margin-left: -0.6em;
+  font-weight: var(--font-weight-bold);
   color: #7a2518;
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
 }
@@ -1666,7 +1638,7 @@ pre {
 }
 
 .asciiprose .verseblock pre {
-  font-family: "Open Sans", "DejaVu Sans", sans;
+  font-family: inherit;
   font-size: 1.15rem;
   color: rgba(0, 0, 0, 0.85);
   font-weight: 300;
@@ -1674,7 +1646,7 @@ pre {
 }
 
 .asciiprose .verseblock pre strong {
-  font-weight: 400;
+  font-weight: var(--font-weight-normal);
 }
 
 .asciiprose .verseblock .attribution {
@@ -1685,7 +1657,6 @@ pre {
 .asciiprose .quoteblock .attribution,
 .asciiprose .verseblock .attribution {
   font-size: .9375em;
-  line-height: 1.45;
   font-style: italic;
 }
 
@@ -1697,7 +1668,7 @@ pre {
 .asciiprose .quoteblock .attribution cite,
 .asciiprose .verseblock .attribution cite {
   display: block;
-  letter-spacing: -0.025em;
+  letter-spacing: normal;
   color: rgba(0, 0, 0, 0.6);
 }
 
@@ -1817,12 +1788,11 @@ pre {
 
 .asciiprose table thead th,
 .asciiprose table tfoot th {
-  font-weight: bold;
+  font-weight: var(--font-weight-bold);
 }
 
 .asciiprose tbody tr th {
   display: table-cell;
-  line-height: 1.6;
   background: #f7f8f7;
 }
 
@@ -1831,7 +1801,7 @@ pre {
 .asciiprose tfoot tr th,
 .asciiprose tfoot tr th p {
   color: rgba(0, 0, 0, 0.8);
-  font-weight: bold;
+  font-weight: var(--font-weight-bold);
 }
 
 .asciiprose p.tableblock > code:only-child {
@@ -1921,7 +1891,7 @@ pre {
 }
 
 .asciiprose .unstyled dl dt {
-  font-weight: 400;
+  font-weight: var(--font-weight-normal);
   font-style: normal;
 }
 
@@ -1971,7 +1941,7 @@ pre {
 }
 
 .asciiprose td.hdlist1 {
-  font-weight: bold;
+  font-weight: var(--font-weight-bold);
   padding-bottom: 1.25em;
 }
 
@@ -1982,7 +1952,6 @@ pre {
 
 .asciiprose .colist > table tr > td:first-of-type {
   padding: 0 .75em;
-  line-height: 1;
 }
 
 .asciiprose .colist > table tr > td:last-of-type {
@@ -1991,7 +1960,6 @@ pre {
 
 .asciiprose .thumb,
 .asciiprose .th {
-  line-height: 0;
   display: inline-block;
   border: solid 4px #fff;
   -webkit-box-shadow: 0 0 0 1px #ddd;
@@ -2027,7 +1995,6 @@ pre {
   margin-top: .25em;
   margin-bottom: .25em;
   display: inline-block;
-  line-height: 0;
 }
 
 .asciiprose .image.left {
@@ -2079,7 +2046,6 @@ pre {
 
 .asciiprose #footnotes .footnote {
   padding: 0 .375em 0 .225em;
-  line-height: 1.3334;
   font-size: .875em;
   margin-left: 1.2em;
   text-indent: -1.05em;
@@ -2087,7 +2053,7 @@ pre {
 }
 
 .asciiprose #footnotes .footnote a:first-of-type {
-  font-weight: bold;
+  font-weight: var(--font-weight-bold);
   text-decoration: none;
 }
 
@@ -2310,10 +2276,8 @@ pre {
   font-size: .75em;
   width: 1.67em;
   height: 1.67em;
-  line-height: 1.67em;
-  font-family: "Open Sans", "DejaVu Sans", sans-serif;
   font-style: normal;
-  font-weight: bold;
+  font-weight: var(--font-weight-bold);
 }
 
 .asciiprose .conum[data-value] * {
@@ -2353,13 +2317,13 @@ pre {
 .asciiprose p,
 .asciiprose td.content,
 .asciiprose span.alt {
-  letter-spacing: -0.01em;
+  letter-spacing: normal;
 }
 
 .asciiprose p strong,
 .asciiprose td.content strong,
 .asciiprose div.footnote strong {
-  letter-spacing: -0.005em;
+  letter-spacing: normal;
 }
 
 .asciiprose p,

@@ -3,9 +3,8 @@ import Image from 'next/image';
 import React, { JSX } from 'react';
 import Layout from '../components/Layout';
 import {getAllPosts, Post} from '../lib/posts';
-import "@fontsource/alegreya"
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
-import {faEnvelope, faUser} from "@fortawesome/free-solid-svg-icons";
+import {faEnvelope, faFeatherPointed, faUser} from "@fortawesome/free-solid-svg-icons";
 import meJpg from '../public/images/me.jpg'
 import PostList from "../components/posts/PostList";
 import {AUTHOR_NAME} from "../utils/author";
@@ -25,7 +24,7 @@ export const Index = ({posts}: IndexProps): JSX.Element => {
         className="py-12 flex justify-center">
         <div
           className="container max-w-6xl grid grid-cols-1 lg:grid-cols-12 items-center gap-4 mx-10">
-          <div className="col-span-2">
+          <div className="w-40 lg:col-span-2 lg:w-auto">
             <Image
               className="max-h-full min-w-[150px] rounded-full"
               src={meJpg}
@@ -33,24 +32,24 @@ export const Index = ({posts}: IndexProps): JSX.Element => {
               priority
             />
           </div>
-          <div className="col-span-7 px-2">
+          <div className="px-2 lg:col-span-7">
             <p
-              className="font-[Alegreya] text-5xl lg:text-6xl sm:text-5xl">{AUTHOR_NAME}</p>
-            <p className="text-lg text-gray-800 ">
+              className="text-5xl font-medium lg:text-6xl">{AUTHOR_NAME}</p>
+            <p className="text-xl text-gray-800">
               Passionate software engineer<br/>
             </p>
           </div>
-          <div className="col-span-3 px-2">
+          <div className="px-2 lg:col-span-3">
             <h4
-              className="font-[Alegreya] text-lg font-light pb-3 flex flex-row flex-nowrap items-center">
+              className="text-2xl font-medium pb-3 flex flex-row flex-nowrap items-center">
               <FontAwesomeIcon icon={faEnvelope} className="h-5 pr-4"/>
               Contact Information
             </h4>
-            <dl className="text-base">
+            <dl className="text-lg">
               <div className="sm:grid sm:grid-cols-2">
                 <dt className="font-bold">Email</dt>
                 {/* Just a little obfuscation to prevent spam */}
-                <dd className="font-normal"><span className="whitespace-nowrap">sergey⟬аt⟭serce.me</span></dd>
+                <dd className="font-normal"><span className="whitespace-nowrap">sergey⟬αt⟭serce.me</span></dd>
               </div>
               <div className="sm:grid sm:grid-cols-2">
                 <dt className="font-bold">Github</dt>
@@ -73,19 +72,19 @@ export const Index = ({posts}: IndexProps): JSX.Element => {
           </div>
         </div>
       </div>
-      <div className="container max-w-5xl	mx-auto px-12 py-6 text-base">
+      <div className="container max-w-5xl mx-auto px-12 py-6">
         <div
           className="grid grid-cols-1 lg:grid-cols-2 flex flex-wrap -mx-2">
           <div className="px-2">
             <h3
-              className="font-[Alegreya] p-4 text-2xl flex flex-row flex-nowrap items-center ">
+              className="p-4 text-2xl font-medium flex flex-row flex-nowrap items-center">
               <FontAwesomeIcon icon={faUser} className="h-5 pr-4"/>
               About Me
             </h3>
             <hr/>
             <div className="p-4">
               <p>Hey, folks! I&apos;m a:</p>
-              <ul className="list-disc text-m font-normal pl-6 pb-4">
+              <ul className="list-disc space-y-1 font-normal pl-6 pb-4">
                 <li>Software engineer at <a href="https://canva.com/about/">Canva</a></li>
                 <li>Big fan of the JVM</li>
                 <li>Functional programming enthusiast</li>
@@ -108,7 +107,10 @@ export const Index = ({posts}: IndexProps): JSX.Element => {
           <div className="px-4">
             <div>
               <div className="p-4">
-                <h3 className="font-[Alegreya] text-2xl">Recent Posts</h3>
+                <h3 className="text-2xl font-medium flex flex-row flex-nowrap items-center">
+                  <FontAwesomeIcon icon={faFeatherPointed} className="h-5 pr-4"/>
+                  Recent Posts
+                </h3>
               </div>
               <hr/>
               <PostList

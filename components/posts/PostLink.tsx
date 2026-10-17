@@ -1,5 +1,4 @@
 import React, { JSX } from 'react';
-import "@fontsource/alegreya"
 import {Post} from "../../lib/posts";
 import Link from "next/link";
 import {faArrowUpRightFromSquare} from "@fortawesome/free-solid-svg-icons";
@@ -8,7 +7,7 @@ import {formatDate} from "../../utils/dates";
 
 const PostLink = ({post, titleFirst = false}: { post: Post, titleFirst?: boolean }): JSX.Element => {
   const date = (
-    <h4 className="font-[Alegreya] text-lg py-1">{formatDate(post.date)}</h4>
+    <h4 className="text-lg py-1">{formatDate(post.date)}</h4>
   );
 
   return (

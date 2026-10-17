@@ -1,5 +1,4 @@
 import React, { JSX } from 'react';
-import "@fontsource/alegreya"
 
 const Quote = ({quote, attribution}: { quote: string, attribution?: string }): JSX.Element => {
   return (

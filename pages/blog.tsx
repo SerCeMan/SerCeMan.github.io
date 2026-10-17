@@ -8,9 +8,8 @@ export const Blog = ({posts}: { posts: Post[] }): JSX.Element => {
   return (
     <Layout>
       <div>
-        <div className="container max-w-4xl	mx-auto px-12 py-6 text-base">
-          <h1
-            className="font-[Alegreya] text-2xl font-normal">Blog Posts</h1>
+        <div className="container max-w-4xl mx-auto px-12 py-6">
+          <h1>Blog Posts</h1>
           <PostList
             listClass="pl-4"
             posts={posts}

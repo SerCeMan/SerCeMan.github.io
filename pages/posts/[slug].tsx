@@ -16,7 +16,6 @@ import Layout from '../../components/Layout';
 import {MetaProps} from '../../types/layout';
 import {POSTS_PATH, postUrlPaths} from '../../utils/mdxUtils';
 import React, { JSX } from "react";
-import "@fontsource/noto-serif";
 import rehypeHighlight from "rehype-highlight";
 import clojure from 'highlight.js/lib/languages/clojure'
 import x86asm from 'highlight.js/lib/languages/x86asm'
@@ -77,7 +76,7 @@ const PostPage = ({source, frontMatter}: PostPageProps): JSX.Element => {
     <Layout customMeta={customMeta}>
       <article
         className="container mx-auto mt-12 px-10 py-8 shadow-md bg-white max-w-5xl flex flex-col">
-        <p className="self-start text-sm text-gray-500">
+        <p className="self-start text-lg text-gray-500">
           By {AUTHOR_NAME} on {format(parseISO(frontMatter.date), 'dd MMMM yyyy')}
         </p>
         <div

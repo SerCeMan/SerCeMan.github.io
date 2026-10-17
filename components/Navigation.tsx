@@ -1,13 +1,12 @@
 import Link from 'next/link';
 import React, { JSX } from 'react';
-import "@fontsource/alegreya"
 
 const Navigation = (): JSX.Element => {
     return (
-        <nav className="flex flow-row justify-between items-center w-full text-lg">
+        <nav className="flex flow-row justify-between items-center w-full text-xl">
             <Link
                 href="/"
-                className="font-[Alegreya] text-gray-500 pr-6 py-4 float-left w-1/2 text-4xl">
+                className="font-medium text-gray-500 pr-6 py-4 float-left w-1/2 text-4xl">
                 SerCe&apos;s blog
             </Link>
             <div className="float-right">

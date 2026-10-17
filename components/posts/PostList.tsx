@@ -1,5 +1,4 @@
 import React from 'react';
-import "@fontsource/alegreya"
 import PostLink from "./PostLink";
 import {Post} from "../../lib/posts";
 import Link from "next/link";

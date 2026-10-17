@@ -1,5 +1,4 @@
 import React from 'react';
-import "@fontsource/alegreya"
 
 const ImageWithCaption = ({src, alt, caption}) => {
     return (
@@ -8,7 +7,6 @@ const ImageWithCaption = ({src, alt, caption}) => {
             {caption &&
                 <figcaption style={{
                     paddingTop: '1em',
-                    fontFamily: 'sans-serif',
                     fontSize: '1em',
                     color: '#777'
                 }}>{caption}</figcaption>}

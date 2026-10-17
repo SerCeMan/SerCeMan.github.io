@@ -1,6 +1,8 @@
 import { ThemeProvider } from 'next-themes';
 import type { AppProps } from 'next/app';
 import React, { JSX } from 'react';
+import '@fontsource-variable/crimson-pro/wght.css';
+import '@fontsource-variable/crimson-pro/wght-italic.css';
 import '../styles/globals.css';
 
 const MyApp = ({ Component, pageProps }: AppProps): JSX.Element => {

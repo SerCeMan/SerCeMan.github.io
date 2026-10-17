@@ -1,4 +1,6 @@
 import React from 'react';
+import '@fontsource-variable/eb-garamond/wght.css';
+import '@fontsource-variable/eb-garamond/wght-italic.css';
 import Layout from '../components/Layout';
 import {GetStaticProps} from "next";
 import {getAllTalks, Talk} from "../lib/talks";
@@ -23,24 +25,24 @@ export const Talks = ({talks}: { talks: Talk[]; }): JSX.Element => {
   return (
     <Layout>
       <div>
-        <div className="container max-w-4xl	mx-auto px-12 py-6 text-base">
+        <div className="container max-w-4xl mx-auto px-12 py-6">
           <div>
             <h1
-              className="font-[Alegreya] text-3xl font-normal mb-3">Talks</h1>
+              className="mb-3">Talks</h1>
             Below is a list of public talks I&apos;ve given at various conferences and meetups.
             <hr/>
             {talks.map((talk) =>
               <div className="flex flex-col mt-6" key={talk.title}>
                 <div className="flex flex-col">
                   <h1
-                    className="font-[Alegreya] flex flex-row text-2xl gap-1 mb-2 items-center">
+                    className="flex flex-row text-2xl gap-1 mb-2 items-center">
                     <div>[{talk.language === 'ru' ? 'RU' : 'EN'}]</div>
                     <div className="pl-1 whitespace-pre-wrap">{talk.title}</div>
                   </h1>
                   {talk.events.map((event) =>
                     <div key={event.name} className="flex flex-col">
                       <div
-                        className="font-[Alegreya] text-lg"
+                        className="text-lg"
                       >{formatDate(event.date)}</div>
                       <div className="flex flex-col">
                         {event.eventUrl ? (
