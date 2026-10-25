@@ -2,6 +2,7 @@
 
 @theme {
   --font-sans: "Crimson Pro Variable", "EB Garamond Variable", "DejaVu Serif", serif;
+  --font-mono: ui-monospace, "SFMono-Regular", Menlo, Consolas, "Liberation Mono", monospace;
   --font-weight-normal: 350;
   --font-weight-medium: 450;
   --font-weight-semibold: 550;
@@ -81,31 +82,9 @@
   @apply transition-all;
 }
 
-.asciiprose pre {
-  @apply border border-gray-200;
-}
-
-.asciiprose code {
-  @apply px-1 py-0.5 border border-gray-100 rounded-lg bg-white;
-}
-
-.asciiprose pre code {
-  @apply text-gray-800 p-0;
-  border: initial;
-}
-
 .asciiprose img {
   /* Don't apply styles to next/image */
   @apply m-0;
-}
-
-pre::-webkit-scrollbar {
-  display: none;
-}
-
-pre {
-  -ms-overflow-style: none; /* IE and Edge */
-  scrollbar-width: none; /* Firefox */
 }
 
 .highlight-line {
@@ -617,12 +596,6 @@ pre {
   font-size: 60%;
 }
 
-.asciiprose code {
-  font-family: "Droid Sans Mono", "DejaVu Sans Mono", monospace;
-  font-weight: 400;
-  color: rgba(0, 0, 0, 0.9);
-}
-
 .asciiprose ul,
 .asciiprose ol,
 .asciiprose dl {
@@ -823,31 +796,6 @@ pre {
 .asciiprose .clearfix:after,
 .asciiprose .float-group:after {
   clear: both;
-}
-
-.asciiprose *:not(pre) > code {
-  font-size: .9375em;
-  font-style: normal !important;
-  letter-spacing: 0;
-  padding: .1em .5ex;
-  word-spacing: -0.15em;
-  background-color: #f7f7f8;
-  -webkit-border-radius: 4px;
-  border-radius: 4px;
-  text-rendering: optimizeSpeed;
-}
-
-.asciiprose pre,
-.asciiprose pre > code {
-  line-height: 1.45;
-  margin-bottom: 1.25em;
-  margin-top: 1.25em;
-  color: rgba(0, 0, 0, 0.9);
-  font-family: "Droid Sans Mono", "DejaVu Sans Mono", monospace;
-  font-weight: 400;
-  text-rendering: optimizeSpeed;
-  overflow-x: auto;
-  display: block;
 }
 
 .asciiprose .keyseq {
@@ -1323,11 +1271,6 @@ pre {
   white-space: nowrap;
   overflow: visible;
   max-width: 0;
-}
-
-.asciiprose pre {
-  padding: 4px !important;
-  font-size: 15px !important;
 }
 
 .asciiprose .paragraph.lead > p,

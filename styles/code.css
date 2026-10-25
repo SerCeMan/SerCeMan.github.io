@@ -1,0 +1,161 @@
+/* Code typography is separate from the legacy Asciidoctor prose styles. */
+.asciiprose {
+  min-width: 0;
+}
+
+.asciiprose code,
+.asciiprose pre {
+  font-family: var(--font-mono);
+  font-weight: 400;
+  font-style: normal;
+  font-variant-ligatures: none;
+  letter-spacing: normal;
+  word-spacing: normal;
+}
+
+/* Match the visual size of the serif text without changing its line spacing. */
+.asciiprose :not(pre) > code {
+  padding: 0.12em 0.32em;
+  border: 0;
+  border-radius: 4px;
+  background: #f1f3f5;
+  color: #354052;
+  font-size: 0.78em;
+  line-height: inherit;
+  overflow-wrap: anywhere;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+}
+
+.asciiprose a > code {
+  color: inherit;
+}
+
+/* The outer pre owns the frame and scrolling; code only owns the content. */
+.asciiprose pre {
+  max-width: 100%;
+  margin: 1.5rem 0;
+  padding: 1.25rem 1.5rem;
+  border: 1px solid #e1e5eb;
+  border-radius: 10px;
+  background: #f6f8fa;
+  color: #263449;
+  font-size: 0.9375rem;
+  line-height: 1.7;
+  tab-size: 2;
+  white-space: pre;
+  overflow-wrap: normal;
+  overflow-x: auto;
+  scrollbar-width: thin;
+  scrollbar-color: #c1c9d4 transparent;
+}
+
+.asciiprose pre > code {
+  display: block;
+  min-width: 100%;
+  width: max-content;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  overflow-wrap: normal;
+}
+
+.asciiprose pre:focus-visible {
+  outline: 2px solid #2156a5;
+  outline-offset: 3px;
+}
+
+/* A few older posts wrap a fenced block in another pre. Keep a single frame. */
+.asciiprose pre pre {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  font-size: inherit;
+}
+
+.asciiprose .rehype-code-title {
+  margin-top: 1.5rem;
+  padding: 0.65rem 1.5rem;
+  border: 1px solid #e1e5eb;
+  border-bottom: 0;
+  border-radius: 10px 10px 0 0;
+  background: #eef1f5;
+  color: #536176;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  overflow-wrap: anywhere;
+}
+
+.asciiprose .rehype-code-title + pre {
+  margin-top: 0;
+  border-radius: 0 0 10px 10px;
+}
+
+/* Restrained syntax colours with readable comments and no forced bold text. */
+.asciiprose .hljs-comment,
+.asciiprose .hljs-quote {
+  color: #667085;
+}
+
+.asciiprose .hljs-keyword,
+.asciiprose .hljs-type,
+.asciiprose .hljs-selector-tag {
+  color: #7940a0;
+}
+
+.asciiprose .hljs-string,
+.asciiprose .hljs-regexp,
+.asciiprose .hljs-addition {
+  color: #226b45;
+}
+
+.asciiprose .hljs-number,
+.asciiprose .hljs-literal,
+.asciiprose .hljs-symbol,
+.asciiprose .hljs-bullet {
+  color: #a04d18;
+}
+
+.asciiprose .hljs-title,
+.asciiprose .hljs-built_in,
+.asciiprose .hljs-section,
+.asciiprose .hljs-name {
+  color: #215fa6;
+}
+
+.asciiprose .hljs-meta,
+.asciiprose .hljs-attr,
+.asciiprose .hljs-attribute,
+.asciiprose .hljs-variable,
+.asciiprose .hljs-template-variable {
+  color: #82511b;
+}
+
+.asciiprose .hljs-deletion {
+  color: #b13b43;
+}
+
+.asciiprose .hljs-emphasis {
+  font-style: italic;
+}
+
+.asciiprose .hljs-strong {
+  font-weight: 600;
+}
+
+@media (max-width: 639px) {
+  .asciiprose pre {
+    padding: 1rem;
+    font-size: 0.8125rem;
+  }
+
+  .asciiprose .rehype-code-title {
+    padding-inline: 1rem;
+  }
+}

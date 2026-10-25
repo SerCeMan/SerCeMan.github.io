@@ -90,7 +90,7 @@ export const Index = ({posts}: IndexProps): JSX.Element => {
                 <li>Functional programming enthusiast</li>
                 <li>Survivor of many debugging sessions of Java, Kotlin, Clojure, TypeScript, and even ClojureScript</li>
                 <li>Technology internals diver</li>
-                <li>An occasional conference speaker and a former lead of <a href="https://jugekb.ru">JUG.EKB</a></li>
+                <li>An occasional conference speaker and a former lead of <a href="https://web.archive.org/web/20191222015651/http://jugekb.ru/">JUG.EKB</a></li>
                 <li>Engineer in a love-hate relationship with the nuances of concurrency and performance.</li>
                 <li>Powerlifting and mountain biking enthusiast</li>
               </ul>

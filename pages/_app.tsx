@@ -6,6 +6,7 @@ import '@fortawesome/fontawesome-svg-core/styles.css';
 import '@fontsource-variable/crimson-pro/wght.css';
 import '@fontsource-variable/crimson-pro/wght-italic.css';
 import '../styles/globals.css';
+import '../styles/code.css';
 
 // Ship icon styles with the page instead of injecting them after hydration.
 config.autoAddCss = false;

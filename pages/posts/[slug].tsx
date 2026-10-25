@@ -24,7 +24,6 @@ import cpp from 'highlight.js/lib/languages/cpp'
 import c from 'highlight.js/lib/languages/c'
 import kotlin from 'highlight.js/lib/languages/kotlin'
 import bash from 'highlight.js/lib/languages/bash'
-import "highlight.js/styles/idea.css"
 import TweetEmbed from "../../components/TweetEmbed";
 import TimeQuizChooser from "../../components/matteroftime/TimeQuizChooser";
 import CheckResults from "../../components/matteroftime/CheckResults";
@@ -75,7 +74,7 @@ const PostPage = ({source, frontMatter}: PostPageProps): JSX.Element => {
   return (
     <Layout customMeta={customMeta}>
       <article
-        className="container mx-auto mt-12 px-10 py-8 shadow-md bg-white max-w-5xl flex flex-col">
+        className="container mx-auto mt-12 px-5 sm:px-10 py-8 shadow-md bg-white max-w-5xl flex flex-col">
         <p className="self-start text-lg text-gray-500">
           By {AUTHOR_NAME} on {format(parseISO(frontMatter.date), 'dd MMMM yyyy')}
         </p>
