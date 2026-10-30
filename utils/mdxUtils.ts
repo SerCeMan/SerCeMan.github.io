@@ -1,15 +1,14 @@
 import fs from 'fs';
 import path from 'path';
 
-// POSTS_PATH is useful when you want to get the path to a specific file
-export const POSTS_PATH = path.join(process.cwd(), 'posts');
+const POSTS_PATH = path.join(process.cwd(), 'posts');
 
-// postFilePaths is the list of all mdx files inside the POSTS_PATH directory
-export const postFilePaths = fs
-  .readdirSync(POSTS_PATH)
-  // Only include md(x) files
-  .filter((path) => /\.mdx?$/.test(path));
+export function getPostFilePaths(): string[] {
+  return fs.readdirSync(POSTS_PATH).filter((filePath) => /\.mdx$/.test(filePath));
+}
 
-export const postUrlPaths = postFilePaths
-  // Remove file extensions for page paths
-  .map((path) => path.replace(/\.mdx?$/, ''))
+export function getPostSource(slug: string): string {
+  const realSlug = slug.replace(/\.mdx$/, '');
+  // An import lets Next.js track edits and refresh pages using this content.
+  return require(`../posts/${realSlug}.mdx`).default;
+}

@@ -10,6 +10,9 @@ pnpm install --frozen-lockfile
 pnpm dev
 ```
 
+Saving a `.mdx` file in `posts/` automatically refreshes the article and post lists
+in the browser while the development server is running.
+
 Run `pnpm lint` and `pnpm type-check` to check the code, and `pnpm build` to create
 a production build. The build also generates the sitemap through `postbuild`.
 

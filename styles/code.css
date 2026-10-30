@@ -15,16 +15,14 @@
 
 /* Match the visual size of the serif text without changing its line spacing. */
 .asciiprose :not(pre) > code {
-  padding: 0.12em 0.32em;
+  padding: 0;
   border: 0;
-  border-radius: 4px;
-  background: #f1f3f5;
-  color: #354052;
+  border-radius: 0;
+  background: transparent;
+  color: inherit;
   font-size: 0.78em;
   line-height: inherit;
   overflow-wrap: anywhere;
-  -webkit-box-decoration-break: clone;
-  box-decoration-break: clone;
 }
 
 .asciiprose a > code {

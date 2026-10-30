@@ -28,7 +28,7 @@ const Head = ({customMeta}: { customMeta?: MetaProps }): JSX.Element => {
       <meta property="og:title" content={meta.title}/>
       {meta.image &&
         <meta property="og:image" content={meta.image}/>}
-      <meta name="twitter:card" content="summary_large_image"/>
+      <meta name="twitter:card" content={meta.image ? "summary_large_image" : "summary"}/>
       <meta name="twitter:site" content="@SerCeMan"/>
       <meta name="twitter:title" content={meta.title}/>
       <meta name="twitter:description" content={meta.description}/>

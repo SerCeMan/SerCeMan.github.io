@@ -1,5 +1,4 @@
 import {format, parseISO} from 'date-fns';
-import fs from 'fs';
 import matter from 'gray-matter';
 import {GetStaticPaths, GetStaticProps} from 'next';
 import {MDXRemote, MDXRemoteSerializeResult} from 'next-mdx-remote';
@@ -7,14 +6,13 @@ import {serialize} from 'next-mdx-remote/serialize';
 import Head from 'next/head';
 import Image from 'next/image';
 import Link from 'next/link';
-import path from 'path';
 import rehypeAutolinkHeadings from 'rehype-autolink-headings';
 import rehypeCodeTitles from 'rehype-code-titles';
 import rehypeSlug from 'rehype-slug';
 import remarkGfm from 'remark-gfm';
 import Layout from '../../components/Layout';
 import {MetaProps} from '../../types/layout';
-import {POSTS_PATH, postUrlPaths} from '../../utils/mdxUtils';
+import {getPostFilePaths, getPostSource} from '../../utils/mdxUtils';
 import React, { JSX } from "react";
 import rehypeHighlight from "rehype-highlight";
 import clojure from 'highlight.js/lib/languages/clojure'
@@ -24,6 +22,8 @@ import cpp from 'highlight.js/lib/languages/cpp'
 import c from 'highlight.js/lib/languages/c'
 import kotlin from 'highlight.js/lib/languages/kotlin'
 import bash from 'highlight.js/lib/languages/bash'
+import python from 'highlight.js/lib/languages/python'
+import javascript from 'highlight.js/lib/languages/javascript'
 import TweetEmbed from "../../components/TweetEmbed";
 import TimeQuizChooser from "../../components/matteroftime/TimeQuizChooser";
 import CheckResults from "../../components/matteroftime/CheckResults";
@@ -36,12 +36,11 @@ import {AUTHOR_NAME} from "../../utils/author";
 import ImageWithCaption from "../../components/ImgWithCaption";
 import {CapitalLetter} from "../../components/alphabet/CapitalLetter";
 import DiscussionLinks from "../../components/posts/DiscussionLinks";
+import WhitespaceHash from "../../components/whitespace/WhitespaceHash";
 
 
-// Custom components/renderers to pass to MDX.
-// Since the MDX files aren't loaded by webpack, they have no knowledge of how
-// to handle import statements. Instead, you must include components in scope
-// here.
+// MDX is compiled by next-mdx-remote, so components used by articles must be
+// provided here.
 const components = {
   Head,
   Image,
@@ -50,6 +49,7 @@ const components = {
   TweetEmbed,
   Quote,
   DiscussionLinks,
+  WhitespaceHash,
   // the matter of time only
   CanvaEmbed,
   CheckResults,
@@ -67,7 +67,7 @@ const PostPage = ({source, frontMatter}: PostPageProps): JSX.Element => {
   const customMeta: MetaProps = {
     title: `${frontMatter.title}`,
     description: frontMatter.description,
-    image: `${WEBSITE_HOST_URL}${frontMatter.image}`,
+    image: frontMatter.image ? `${WEBSITE_HOST_URL}${frontMatter.image}` : undefined,
     date: frontMatter.date,
     type: 'article',
   };
@@ -92,8 +92,7 @@ const PostPage = ({source, frontMatter}: PostPageProps): JSX.Element => {
 };
 
 export const getStaticProps: GetStaticProps = async ({params}) => {
-  const postFilePath = path.join(POSTS_PATH, `${params.slug}.mdx`);
-  const source = fs.readFileSync(postFilePath);
+  const source = getPostSource(params.slug as string);
 
   const {content, data} = matter(source);
 
@@ -113,6 +112,8 @@ export const getStaticProps: GetStaticProps = async ({params}) => {
             x86asm,
             kotlin,
             bash,
+            python,
+            javascript,
           },
         }],
         [
@@ -139,7 +140,8 @@ export const getStaticProps: GetStaticProps = async ({params}) => {
 };
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const paths = postUrlPaths
+  const paths = getPostFilePaths()
+    .map((filePath) => filePath.replace(/\.mdx$/, ''))
     // Map the path into the static paths object required by Next.js
     .map((slug) => ({params: {slug}}));
 

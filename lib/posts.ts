@@ -1,11 +1,9 @@
-import fs from 'fs';
 import matter from 'gray-matter';
-import {join} from 'path';
-import {POSTS_PATH} from '../utils/mdxUtils';
+import {getPostFilePaths, getPostSource} from '../utils/mdxUtils';
 import {WEBSITE_HOST_URL} from "./paths";
 
 export function getPostSlugs(): string[] {
-  return fs.readdirSync(POSTS_PATH);
+  return getPostFilePaths();
 }
 
 export type DiscussionLink = {
@@ -74,15 +72,14 @@ export type Post = MdxPost | ExternalPost
 
 function getMdxPostBySlug(slug: string, includeContent: boolean): MdxPost {
   const realSlug = slug.replace(/\.mdx$/, '');
-  const fullPath = join(POSTS_PATH, `${realSlug}.mdx`);
-  const fileContents = fs.readFileSync(fullPath, 'utf8');
+  const fileContents = getPostSource(realSlug);
   const {data, content} = matter(fileContents);
   return {
     title: data['title'],
     date: data['date'],
     content: includeContent ? content : null,
     description: data['description'],
-    image: data['image'],
+    ...(data['image'] ? {image: data['image']} : {}),
     discussionLinks: data['discussionLinks'] ?? [],
     slug: realSlug,
     kind: "mdx"
