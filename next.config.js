@@ -84,7 +84,12 @@ module.exports = {
             },
             {
                 source: '/posts/2026-11-30-how-hard-is-it-to-check-for-white-space-in-java',
-                destination: '/posts/2026-11-30-how-hard-is-it-to-check-for-whitespace',
+                destination: '/posts/2026-10-30-how-hard-is-it-to-check-for-whitespace',
+                permanent: true,
+            },
+            {
+                source: '/posts/2026-11-30-how-hard-is-it-to-check-for-whitespace',
+                destination: '/posts/2026-10-30-how-hard-is-it-to-check-for-whitespace',
                 permanent: true,
             },
         ];
