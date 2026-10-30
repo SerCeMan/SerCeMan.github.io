@@ -82,6 +82,11 @@ module.exports = {
                 destination: '/posts/2025-03-31-there-is-no-vibe-engineering',
                 permanent: true,
             },
+            {
+                source: '/posts/2026-11-30-how-hard-is-it-to-check-for-white-space-in-java',
+                destination: '/posts/2026-11-30-how-hard-is-it-to-check-for-whitespace',
+                permanent: true,
+            },
         ];
     },
     images: {
