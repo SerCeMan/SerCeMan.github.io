@@ -61,9 +61,10 @@ const components = {
 type PostPageProps = {
   source: MDXRemoteSerializeResult;
   frontMatter: Post;
+  postUrl: string;
 };
 
-const PostPage = ({source, frontMatter}: PostPageProps): JSX.Element => {
+const PostPage = ({source, frontMatter, postUrl}: PostPageProps): JSX.Element => {
   const customMeta: MetaProps = {
     title: `${frontMatter.title}`,
     description: frontMatter.description,
@@ -84,7 +85,7 @@ const PostPage = ({source, frontMatter}: PostPageProps): JSX.Element => {
             {frontMatter.title}
           </h1>
           <MDXRemote {...source} components={components}/>
-          <SubscribeForm/>
+          <SubscribeForm postUrl={postUrl} postTitle={frontMatter.title}/>
         </div>
       </article>
     </Layout>
@@ -135,6 +136,7 @@ export const getStaticProps: GetStaticProps = async ({params}) => {
     props: {
       source: mdxSource,
       frontMatter: data,
+      postUrl: `${WEBSITE_HOST_URL}/posts/${params.slug}`,
     },
   };
 };

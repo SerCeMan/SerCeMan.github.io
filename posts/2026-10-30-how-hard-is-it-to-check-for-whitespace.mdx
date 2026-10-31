@@ -3,6 +3,11 @@ title: "How hard is it to check for whitespace?"
 description: "A journey through Unicode's whitespace characters and perfect hashing."
 image: '/images/whitespace/whitespace.png'
 date: '2026-10-30'
+discussionLinks:
+  - platform: lobsters
+    url: https://lobste.rs/s/1pmuy7/how_hard_is_it_check_for_whitespace
+  - platform: reddit
+    url: https://www.reddit.com/r/programming/comments/1xjtach/how_hard_is_it_to_check_for_whitespace/
 ---
 
 When looking through a piece of source code recently, I stumbled across this method from [Guava](https://github.com/google/guava) – a popular Java library from Google.
@@ -128,3 +133,7 @@ And if you're interested in other applications for perfect hashing – somewhat 
 When I first saw the whitespace-checking code in Guava, it sparked my curiosity, and as a result I learned a few things about Unicode and saw an interesting application of a perfect hash function – something you don't see used that often in the wild.
 
 I hope you've learned something interesting from this article too. And if you find something that sparks your curiosity, please do write a blog post and share it. I do feel that these write-ups are becoming increasingly rare in the AI-first world, where there's rarely a reason to peek under the hood of a function as simple as `isWhitespace`.
+
+## Discuss on
+
+<DiscussionLinks links={discussionLinks}/>

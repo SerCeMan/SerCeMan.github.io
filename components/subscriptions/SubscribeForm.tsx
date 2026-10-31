@@ -3,9 +3,15 @@ import Link from "next/link";
 import {faRss} from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 
-export const SubscribeForm = () => {
+type SubscribeFormProps = {
+  postUrl: string;
+  postTitle: string;
+};
+
+export const SubscribeForm = ({postUrl, postTitle}: SubscribeFormProps) => {
   const [status, setStatus] = useState<"SUCCESS" | "ERROR" | null>(null)
   const [email, setEmail] = useState("")
+  const hackerNewsUrl = `https://news.ycombinator.com/submitlink?u=${encodeURIComponent(postUrl)}&t=${encodeURIComponent(postTitle)}`;
 
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault()
@@ -58,7 +64,8 @@ export const SubscribeForm = () => {
       {status === null && (
         <div>
           <p>
-            I&apos;ll be sending an email every time I publish a new post.
+            If you liked this post, consider subscribing – I&apos;ll be sending an email every time I publish a new post, or{" "}
+            <a href={hackerNewsUrl}>sharing it on Hacker News</a> to help spread the word.
           </p>
           {/* It'd be great to learn why tailwind's pb-1 doesn't work in this case */}
           <div style={{paddingBottom: "1em"}}>
