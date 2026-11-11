@@ -8,6 +8,8 @@ const ignoreConfig = {
         "node_modules/**",
         "out/**",
         ".next/**",
+        ".vercel/**",
+        ".wrangler/**",
     ],
 };
 
